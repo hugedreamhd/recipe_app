@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
+import 'package:recipe_app/core/presentation/components/two_tab.dart';
 
 import 'package:recipe_app/ui/text_styles.dart';
 
@@ -45,6 +46,16 @@ class MyHomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          TwoTab(
+            labels: [
+              'label1',
+              'label2',
+            ],
+            selectedIndex: 1,
+            onChange: (int index) {
+              print('TwoTab : $index');
+            },
+          ),
           const RatingButton('text'),
           const RatingButton('text', isSelected: true),
           const FilterButton('text'),
