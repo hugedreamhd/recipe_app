@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
+
 import 'package:recipe_app/ui/text_styles.dart';
 
 import 'core/presentation/components/big_button.dart';
 import 'core/presentation/components/meduim_button.dart';
+
+import 'core/presentation/components/rating_button.dart';
 import 'core/presentation/components/small_button.dart';
 
 void main() {
@@ -41,6 +45,10 @@ class MyHomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          const RatingButton('text'),
+          const RatingButton('text', isSelected: true),
+          const FilterButton('text'),
+          const FilterButton('text', isSelected: true),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: BigButton(
