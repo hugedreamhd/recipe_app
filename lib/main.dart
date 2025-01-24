@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
 import 'core/presentation/components/big_button.dart';
@@ -65,6 +66,13 @@ class MyHomePage extends StatelessWidget {
               onPressed: () {
                 print('Small Button Pressed');
               },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InputField(
+              label: 'Label',
+              placeholder: 'placeholder',
             ),
           ),
         ],
