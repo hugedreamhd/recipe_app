@@ -40,7 +40,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  const Text(
           'Component',
           style: TextStyles.headerTextBold,
         ),
@@ -52,10 +52,19 @@ class MyHomePage extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (_) {
-                    return const RatingDialog();
+
+                    return RatingDialog(
+                      title: 'Rate Recipe',
+                      score: 3,
+                      onScoreChanged: (score) {
+                        print('onScoreChanged');
+                      },
+                      onScoreSubmitted: 'Send',
+                    );
                   });
             },
-            child: const Text('RatingDialog'),
+            child: const Text('Rating Dialog', {required TextStyle style}),
+
           ),
           TwoTab(
             labels: const [
