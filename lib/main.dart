@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/core/presentation/components/two_tab.dart';
+import 'package:recipe_app/core/presentation/dialog/rating_dialog.dart';
 
 import 'package:recipe_app/ui/text_styles.dart';
 
@@ -46,8 +47,25 @@ class MyHomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) {
+                    return RatingDialog(
+                      title: 'Rate Recipe',
+                      score: 3,
+                      onScoreChanged: (score) {
+                        print('onScoreChanged');
+                      },
+                      onScoreSubmitted: 'Send',
+                    );
+                  });
+            },
+            child: const Text('Rating Dialog'),
+          ),
           TwoTab(
-            labels: [
+            labels: const [
               'label1',
               'label2',
             ],
@@ -87,8 +105,8 @@ class MyHomePage extends StatelessWidget {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: InputField(
               label: 'Label',
               placeholder: 'placeholder',

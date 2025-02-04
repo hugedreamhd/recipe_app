@@ -31,14 +31,14 @@ class InputField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               //포커스 되지 않았을때의 테두리
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: ColorStyles.gray4,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               //포커스 되었을때의 테두리
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: ColorStyles.primary80,
               ),
             ),

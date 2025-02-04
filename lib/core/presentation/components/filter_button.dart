@@ -23,7 +23,7 @@ class FilterButton extends StatelessWidget {
           color: isSelected ? ColorStyles.white : ColorStyles.primary80,
         ),
       ),
-      side: BorderSide(
+      side: const BorderSide(
         color: ColorStyles.primary100,
       ),
     );
