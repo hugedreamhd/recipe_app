@@ -42,7 +42,7 @@ class InputField extends StatelessWidget {
                 color: ColorStyles.primary80,
               ),
             ),
-            hintText: 'Placeholder',
+            hintText: placeholder,
             hintStyle: TextStyles.smallerTextReguler.copyWith(
               color: ColorStyles.gray4,
             ),

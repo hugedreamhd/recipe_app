@@ -1,13 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-
-class RatingDialog extends StatelessWidget {
-  const RatingDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-=======
 import 'package:recipe_app/core/presentation/components/small_button.dart';
 
 import '../../../ui/color_styles.dart';
@@ -94,6 +85,5 @@ class RatingBar extends StatelessWidget {
         },
       ),
     );
->>>>>>> 3fcaa089a2dce14ee60b9b36176127f30e23c01e
   }
 }

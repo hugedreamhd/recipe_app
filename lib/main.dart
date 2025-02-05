@@ -3,6 +3,7 @@ import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/core/presentation/components/two_tab.dart';
 import 'package:recipe_app/core/presentation/dialog/rating_dialog.dart';
+import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
 
 import 'package:recipe_app/ui/text_styles.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const SignInScreen(),
     );
   }
 }
@@ -40,7 +41,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  const Text(
+        title: const Text(
           'Component',
           style: TextStyles.headerTextBold,
         ),
@@ -52,7 +53,6 @@ class MyHomePage extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (_) {
-
                     return RatingDialog(
                       title: 'Rate Recipe',
                       score: 3,
@@ -63,8 +63,9 @@ class MyHomePage extends StatelessWidget {
                     );
                   });
             },
-            child: const Text('Rating Dialog', {required TextStyle style}),
-
+            child: const Text(
+              'Rating Dialog',
+            ),
           ),
           TwoTab(
             labels: const [
