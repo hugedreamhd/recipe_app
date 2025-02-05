@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/data/repository/mock_bookmart_repository_impl.dart';
+import 'package:recipe_app/core/data/repository/mock_recipe_repository_impl.dart';
+import 'package:recipe_app/core/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/core/presentation/components/two_tab.dart';
@@ -7,11 +10,13 @@ import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
 
 import 'package:recipe_app/ui/text_styles.dart';
 
+import 'core/domain/model/recipe.dart';
 import 'core/presentation/components/big_button.dart';
 import 'core/presentation/components/meduim_button.dart';
 
 import 'core/presentation/components/rating_button.dart';
 import 'core/presentation/components/small_button.dart';
+import 'presentation/saved_recipes/saved_recipes_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,10 +31,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: const ColorScheme.light(),
+        scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
-      home: const SignInScreen(),
+      home: FutureBuilder<List<Recipe>>(
+          future: GetSavedRecipesUseCase(
+            recipeRepository: MockRecipeRepositoryImpl(),
+            bookmarkRepository: MockBookmartRepositoryImpl(),
+          ).execute(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            final recipes = snapshot.data!;
+
+            return SavedRecipesScreen(recipes: recipes);
+          }),
     );
   }
 }
