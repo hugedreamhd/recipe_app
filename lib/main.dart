@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/core/data/repository/mock_bookmart_repository_impl.dart';
-import 'package:recipe_app/core/data/repository/mock_recipe_repository_impl.dart';
-import 'package:recipe_app/core/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/core/presentation/components/two_tab.dart';
 import 'package:recipe_app/core/presentation/dialog/rating_dialog.dart';
-import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
-import 'package:recipe_app/presentation/splash_screen/splash_screen.dart';
 
 import 'package:recipe_app/ui/text_styles.dart';
 
-import 'core/domain/model/recipe.dart';
 import 'core/presentation/components/big_button.dart';
 import 'core/presentation/components/meduim_button.dart';
 
 import 'core/presentation/components/rating_button.dart';
 import 'core/presentation/components/small_button.dart';
 import 'core/routing/router.dart';
-import 'presentation/saved_recipes/saved_recipes_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -23,14 +23,25 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/Sign_In',
-      builder: (context, state) => const SignInScreen(),
+      builder: (context, state) => SignInScreen(
+        onTapSignUp: () {
+          context.go('/Sign_Up');
+        },
+        onTapSignIn: () {
+          context.go('/Saved_Recipes');
+        },
+      ),
     ),
     GoRoute(
       path: '/Sign_Up',
-      builder: (context, state) => const SignUpScreen(),
+      builder: (context, state) => SignUpScreen(
+        onTapSignIn: () {
+          context.go('/Sign_In');
+        },
+      ),
     ),
     GoRoute(
-      path: 'Saved_Recipes',
+      path: '/Saved_Recipes',
       builder: (context, state) => FutureBuilder<List<Recipe>>(
         future: GetSavedRecipesUseCase(
           recipeRepository: MockRecipeRepositoryImpl(),

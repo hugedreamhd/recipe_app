@@ -7,7 +7,12 @@ import 'package:recipe_app/ui/text_styles.dart';
 import '../../ui/color_styles.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+  final VoidCallback onTapSignIn;
+
+  const SignUpScreen({
+    super.key,
+    required this.onTapSignIn,
+  });
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -99,7 +104,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 26,
                 ),
-                BigButton('Sing Up', onPressed: () {}),
+                BigButton(
+                  'Sing Up',
+                  onPressed: () {},
+                ),
                 const SizedBox(
                   height: 14,
                 ),
@@ -158,9 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyles.smallerTextBold,
                     ),
                     GestureDetector(
-                      onTap: () {
-                        context.go('/Sign_In');
-                      },
+                      onTap: widget.onTapSignIn,
                       child: Text(
                         'Sign In',
                         style: TextStyles.smallerTextBold
