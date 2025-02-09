@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:recipe_app/core/presentation/components/big_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/ui/text_styles.dart';
@@ -53,7 +54,12 @@ class SignInScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              BigButton('Sing In', onPressed: () {}),
+              BigButton(
+                'Sing In',
+                onPressed: () {
+                  context.go('/Sign_Up');
+                },
+              ),
               const SizedBox(
                 height: 20,
               ),

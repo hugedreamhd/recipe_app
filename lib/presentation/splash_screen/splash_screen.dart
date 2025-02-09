@@ -5,11 +5,11 @@ import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 
 class SplashScreen extends StatelessWidget {
-  final VoidCallback onTapPressed;
+  final VoidCallback onTapStartCooking;
 
   const SplashScreen({
     super.key,
-    required this.onTapPressed,
+    required this.onTapStartCooking,
   });
 
   @override
@@ -77,7 +77,7 @@ class SplashScreen extends StatelessWidget {
                   child: MediumButton(
                     'Start Cooking',
                     onPressed: () {
-                      onTapPressed();
+                      onTapStartCooking();
                     },
                   ),
                 ),

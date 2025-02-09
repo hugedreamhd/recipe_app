@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/presentation/saved_recipes/saved_recipes_screen.dart';
 import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
+import 'package:recipe_app/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_app/presentation/splash_screen/splash_screen.dart';
 
 import '../data/repository/mock_bookmart_repository_impl.dart';
@@ -15,7 +16,7 @@ final router = GoRouter(
     GoRoute(
       path: '/Splash_Screen',
       builder: (context, state) => SplashScreen(
-        onTapPressed: () {
+        onTapStartCooking: () {
           context.go('/Sign_In');
         },
       ),
@@ -23,6 +24,10 @@ final router = GoRouter(
     GoRoute(
       path: '/Sign_In',
       builder: (context, state) => const SignInScreen(),
+    ),
+    GoRoute(
+      path: '/Sign_Up',
+      builder: (context, state) => const SignUpScreen(),
     ),
     GoRoute(
       path: 'Saved_Recipes',
