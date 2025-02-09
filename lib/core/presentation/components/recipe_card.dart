@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/domain/model/recipe.dart';
 
+import '../../../ui/color_styles.dart';
+import '../../../ui/text_styles.dart';
+
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
 
@@ -26,7 +29,74 @@ class RecipeCard extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Positioned(
+            bottom: 10,
+            left: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 200,
+                  height: 42,
+                  child: Text(
+                    recipe.name,
+                    style:
+                        TextStyles.smallTextBold.copyWith(color: Colors.white),
+                  ),
+                ),
+                Text(
+                  'By ${recipe.chef}',
+                  style: TextStyles.smallerTextReguler
+                      .copyWith(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            right: 10,
+            bottom: 10,
+            child: Row(
+              children: [
+                Icon(
+                  Icons.timer_outlined,
+                  color: ColorStyles.white,
+                  size: 17,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  recipe.time,
+                  style: TextStyles.smallTextReguler
+                      .copyWith(color: ColorStyles.white),
+                ),
+                SizedBox(width: 10),
+                ClipOval()
+                // Container(
+                //   width: 24,
+                //   height: 24,
+                //   decoration: BoxDecoration(
+                //     shape: BoxShape.circle,
+                //     color: ColorStyles.primary20,
+                //   ),
+                //   child: Image.asset(
+                //     'assets/images/bookmark.png',
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
+                // Container(
+                //   width: 20,
+                //   height: 20,
+                //   decoration: BoxDecoration(
+                //     shape: BoxShape.circle,
+                //     image: DecorationImage(
+                //       image: AssetImage('assets/images/bookmark.png'),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
         ],
       ),
     );

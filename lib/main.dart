@@ -7,6 +7,7 @@ import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/core/presentation/components/two_tab.dart';
 import 'package:recipe_app/core/presentation/dialog/rating_dialog.dart';
 import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
+import 'package:recipe_app/presentation/splash_screen/splash_screen.dart';
 
 import 'package:recipe_app/ui/text_styles.dart';
 
@@ -16,6 +17,7 @@ import 'core/presentation/components/meduim_button.dart';
 
 import 'core/presentation/components/rating_button.dart';
 import 'core/presentation/components/small_button.dart';
+import 'core/routing/router.dart';
 import 'presentation/saved_recipes/saved_recipes_screen.dart';
 
 void main() {
@@ -28,29 +30,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: const ColorScheme.light(),
         scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
-      home: FutureBuilder<List<Recipe>>(
-          future: GetSavedRecipesUseCase(
-            recipeRepository: MockRecipeRepositoryImpl(),
-            bookmarkRepository: MockBookmartRepositoryImpl(),
-          ).execute(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            final recipes = snapshot.data!;
-
-            return SavedRecipesScreen(recipes: recipes);
-          }),
     );
   }
 }
