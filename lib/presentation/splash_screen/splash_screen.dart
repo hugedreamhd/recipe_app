@@ -5,7 +5,12 @@ import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  final VoidCallback onTapPressed;
+
+  const SplashScreen({
+    super.key,
+    required this.onTapPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +76,9 @@ class SplashScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 66),
                   child: MediumButton(
                     'Start Cooking',
-                    onPressed: () {},
+                    onPressed: () {
+                      onTapPressed();
+                    },
                   ),
                 ),
                 const SizedBox(
