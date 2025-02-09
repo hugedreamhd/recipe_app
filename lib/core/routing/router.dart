@@ -9,39 +9,40 @@ import '../data/repository/mock_bookmart_repository_impl.dart';
 import '../data/repository/mock_recipe_repository_impl.dart';
 import '../domain/model/recipe.dart';
 import '../domain/use_case/get_saved_recipes_use_case.dart';
+import 'route_paths.dart';
 
 final router = GoRouter(
-  initialLocation: '/Splash_Screen',
+  initialLocation: RoutePaths.splashScreen,
   routes: [
     GoRoute(
-      path: '/Splash_Screen',
+      path: RoutePaths.splashScreen,
       builder: (context, state) => SplashScreen(
         onTapStartCooking: () {
-          context.go('/Sign_In');
+          context.go(RoutePaths.signIn);
         },
       ),
     ),
     GoRoute(
-      path: '/Sign_In',
+      path: RoutePaths.signIn,
       builder: (context, state) => SignInScreen(
         onTapSignUp: () {
-          context.go('/Sign_Up');
+          context.go(RoutePaths.signUp);
         },
         onTapSignIn: () {
-          context.go('/Saved_Recipes');
+          context.go(RoutePaths.savedRecipes);
         },
       ),
     ),
     GoRoute(
-      path: '/Sign_Up',
+      path: RoutePaths.signUp,
       builder: (context, state) => SignUpScreen(
         onTapSignIn: () {
-          context.go('/Sign_In');
+          context.go(RoutePaths.signIn);
         },
       ),
     ),
     GoRoute(
-      path: '/Saved_Recipes',
+      path: RoutePaths.savedRecipes,
       builder: (context, state) => FutureBuilder<List<Recipe>>(
         future: GetSavedRecipesUseCase(
           recipeRepository: MockRecipeRepositoryImpl(),
