@@ -16,7 +16,7 @@ class SavedRecipesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Saved Recipes',
           style: TextStyles.mediumTextBold,
         ),
