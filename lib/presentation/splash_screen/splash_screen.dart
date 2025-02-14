@@ -15,79 +15,86 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            height: double.infinity,
-            width: double.infinity,
-            fit: BoxFit.cover,
-            'assets/images/splash_screen_image.png',
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height,
           ),
-          Center(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 104,
-                ),
-                Image.asset(
-                  height: 79,
-                  width: 79,
-                  'assets/images/splash_screen_crown.png',
-                ),
-                const SizedBox(
-                  height: 14,
-                ),
-                Text(
-                  '100K+ Premium Recipe',
-                  style: TextStyles.mediumTextBold.copyWith(
-                    color: ColorStyles.white,
-                  ),
-                ),
-                const SizedBox(
-                  height: 275,
-                ),
-                SizedBox(
-                  width: 275,
-                  child: Column(
-                    children: [
-                      Text(
-                        textAlign: TextAlign.center,
-                        'Get Cooking',
-                        style: TextStyles.titleTextBold
-                            .copyWith(color: ColorStyles.white),
+          child: Stack(
+            children: [
+              Image.asset(
+                height: MediaQuery.of(context).size.height,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                'assets/images/splash_screen_image.png',
+              ),
+              Center(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 104,
+                    ),
+                    Image.asset(
+                      height: 79,
+                      width: 79,
+                      'assets/images/splash_screen_crown.png',
+                    ),
+                    const SizedBox(
+                      height: 14,
+                    ),
+                    Text(
+                      '100K+ Premium Recipe',
+                      style: TextStyles.mediumTextBold.copyWith(
+                        color: ColorStyles.white,
                       ),
-                      const SizedBox(
-                        height: 20,
+                    ),
+                    const SizedBox(
+                      height: 275,
+                    ),
+                    SizedBox(
+                      width: 275,
+                      child: Column(
+                        children: [
+                          Text(
+                            textAlign: TextAlign.center,
+                            'Get Cooking',
+                            style: TextStyles.titleTextBold
+                                .copyWith(color: ColorStyles.white),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            textAlign: TextAlign.center,
+                            'Simple way to find Tasty Recipe',
+                            style: TextStyles.normalTextReguler.copyWith(
+                              color: ColorStyles.white,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        textAlign: TextAlign.center,
-                        'Simple way to find Tasty Recipe',
-                        style: TextStyles.normalTextReguler.copyWith(
-                          color: ColorStyles.white,
-                        ),
+                    ),
+                    const SizedBox(
+                      height: 64,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 66),
+                      child: MediumButton(
+                        'Start Cooking',
+                        onPressed: () {
+                          onTapStartCooking();
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 84,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 64,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 66),
-                  child: MediumButton(
-                    'Start Cooking',
-                    onPressed: () {
-                      onTapStartCooking();
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: 84,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
