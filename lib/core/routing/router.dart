@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recipe_app/presentation/saved_recipes/saved_recipes_screen.dart';
+import 'package:recipe_app/presentation/saved_recipes/screen/saved_recipes_root.dart';
+import 'package:recipe_app/presentation/saved_recipes/screen/saved_recipes_screen.dart';
 import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_app/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_app/presentation/splash_screen/splash_screen.dart';
@@ -42,24 +43,7 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      path: RoutePaths.savedRecipes,
-      builder: (context, state) => FutureBuilder<List<Recipe>>(
-        future: GetSavedRecipesUseCase(
-          recipeRepository: MockRecipeRepositoryImpl(),
-          bookmarkRepository: MockBookmartRepositoryImpl(),
-        ).execute(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          final recipes = snapshot.data!;
-
-          return SavedRecipesScreen(recipes: recipes);
-        },
-      ),
-    ),
+        path: RoutePaths.savedRecipes,
+        builder: (context, state) => const SavedRecipesRoot()),
   ],
 );
