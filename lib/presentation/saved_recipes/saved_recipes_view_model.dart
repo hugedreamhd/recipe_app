@@ -21,10 +21,10 @@ class SavedRecipesViewModel with ChangeNotifier {
 
   void _loadRecipeData() async {
     _isLoading = true;
-    notifyListeners();
+    notifyListeners(); //로딩 시작 알림
 
     _recipes = await _getSavedRecipesUseCase.execute();
-    _isLoading = false;
-    notifyListeners();
+    _isLoading = false; //로딩 종료
+    notifyListeners(); //데이터 및 상태 업데이트
   }
 }
