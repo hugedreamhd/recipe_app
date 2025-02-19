@@ -1,4 +1,7 @@
 import 'package:go_router/go_router.dart';
+import 'package:recipe_app/presentation/home/home_screen.dart';
+import 'package:recipe_app/presentation/notifications/nofitications_screen.dart';
+import 'package:recipe_app/presentation/profile/profile_screen.dart';
 import 'package:recipe_app/presentation/saved_recipes/screen/saved_recipes_root.dart';
 import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_app/presentation/sign_up/sign_up_screen.dart';
@@ -37,7 +40,20 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-        path: RoutePaths.savedRecipes,
-        builder: (context, state) => const SavedRecipesRoot()),
+      path: RoutePaths.home,
+      builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: RoutePaths.savedRecipes,
+      builder: (context, state) => const SavedRecipesRoot(),
+    ),
+    GoRoute(
+      path: RoutePaths.notifications,
+      builder: (context, state) => const Notifications(),
+    ),
+    GoRoute(
+      path: RoutePaths.profile,
+      builder: (context, state) => const ProfileScreen(),
+    ),
   ],
 );
