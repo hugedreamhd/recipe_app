@@ -62,24 +62,30 @@ final router = GoRouter(
             ),
           ],
         ),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: RoutePaths.savedRecipes,
-            builder: (context, state) => const SavedRecipesRoot(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: RoutePaths.notifications,
-            builder: (context, state) => const NotificationsScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: RoutePaths.profile,
-            builder: (context, state) => const ProfileScreen(),
-          ),
-        ]),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: RoutePaths.savedRecipes,
+              builder: (context, state) => const SavedRecipesRoot(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: RoutePaths.notifications,
+              builder: (context, state) => const NotificationsScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: RoutePaths.profile,
+              builder: (context, state) => const ProfileScreen(),
+            ),
+          ],
+        ),
       ],
     ),
   ],

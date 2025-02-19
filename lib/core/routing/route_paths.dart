@@ -1,10 +1,10 @@
 abstract class RoutePaths {
-  static const String signIn = '/SignIn';
-  static const String splashScreen = '/Splash_screen';
-  static const String signUp = '/SignUp';
+  static const String signIn = '/sign_in';
+  static const String splashScreen = '/splash_screen';
+  static const String signUp = '/sign_up';
 
-  static const String home = '/HomeScreen';
-  static const String savedRecipes = '/SavedRecipes';
-  static const String notifications = '/Notifications';
-  static const String profile = '/Profile';
+  static const String home = '/home_screen';
+  static const String savedRecipes = '/saved_recipes';
+  static const String notifications = '/notifications';
+  static const String profile = '/profile';
 }
