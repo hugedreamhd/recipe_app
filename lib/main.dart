@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
+import 'package:recipe_app/core/presentation/components/seartch_input_field.dart';
 import 'package:recipe_app/core/presentation/components/two_tab.dart';
 import 'package:recipe_app/core/presentation/dialog/rating_dialog.dart';
 
@@ -49,6 +50,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          const SearchInputField(placeholder: 'Search Recipe'),
           ElevatedButton(
             onPressed: () {
               showDialog(
