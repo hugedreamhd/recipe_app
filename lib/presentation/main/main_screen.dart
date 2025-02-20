@@ -35,12 +35,12 @@ class MainScreen extends StatelessWidget {
               selectedIcon: Stack(
                 children: [
                   Image.asset(
-                    'assets/images/bottom/Active_home.png',
-                    color: ColorStyles.primary40,
-                  ),
-                  Image.asset(
                     'assets/images/bottom/Inactive_home.png',
                     color: ColorStyles.primary100,
+                  ),
+                  Image.asset(
+                    'assets/images/bottom/Active_home.png',
+                    color: ColorStyles.primary40,
                   ),
                 ],
               ),
