@@ -58,7 +58,9 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: RoutePaths.home,
-              builder: (context, state) => const HomeScreen(),
+              builder: (context, state) => const HomeScreen(
+                name: 'Jega',
+              ),
             ),
           ],
         ),
