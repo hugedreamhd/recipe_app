@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/core/presentation/components/seartch_input_field.dart';
-
+import '../../core/presentation/components/search_input_field.dart';
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
 
 class HomeScreen extends StatelessWidget {
   final String name;
+  final void Function() onTapSearchField; //검색 필드를 탭할때 호출되는 콜백함수
 
   const HomeScreen({
     super.key,
     required this.name,
+    required this.onTapSearchField,
   });
 
   @override
@@ -60,8 +61,18 @@ class HomeScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  const Expanded(
-                    child: SearchInputField(placeholder: 'Search Recipe'),
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque, //이벤트가 발생하는 영역을 확장
+                      onTap: onTapSearchField, //검색 필드를 탭할때 호출되는 콜백함수
+                      child: const IgnorePointer(
+                        //자식 위젯에 대한 이벤트를 무시
+                        child: SearchInputField(
+                          placeholder: 'Search Recipe',
+                          isReadOnly: true,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     width: 20,
