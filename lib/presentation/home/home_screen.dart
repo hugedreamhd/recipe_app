@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/presentation/components/seartch_input_field.dart';
 
 import '../../ui/color_styles.dart';
 import '../../ui/text_styles.dart';
@@ -31,6 +32,9 @@ class HomeScreen extends StatelessWidget {
                         'Hello $name',
                         style: TextStyles.largeTextBold,
                       ),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Text(
                         'what are you cooking today?',
                         style: TextStyles.smallerTextReguler.copyWith(
@@ -48,6 +52,28 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Image.asset('assets/images/profile1.png'),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                children: [
+                  const Expanded(
+                    child: SearchInputField(placeholder: 'Search Recipe'),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: ColorStyles.primary100,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Image.asset('assets/images/setting.png'),
                   ),
                 ],
               ),
