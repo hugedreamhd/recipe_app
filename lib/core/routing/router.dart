@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:recipe_app/presentation/home/home_root.dart';
+import 'package:recipe_app/presentation/home/screen/home_root.dart';
 import 'package:recipe_app/presentation/main/main_screen.dart';
 import 'package:recipe_app/presentation/notifications/nofitications_screen.dart';
 import 'package:recipe_app/presentation/profile/profile_screen.dart';

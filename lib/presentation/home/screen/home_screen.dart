@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/presentation/components/search_input_field.dart';
-import '../../ui/color_styles.dart';
-import '../../ui/text_styles.dart';
+import '../../../core/presentation/components/search_input_field.dart';
+import '../../../ui/color_styles.dart';
+import '../../../ui/text_styles.dart';
 
 class HomeScreen extends StatelessWidget {
   final String name;
