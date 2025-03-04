@@ -58,19 +58,19 @@ class RecipeCard extends StatelessWidget {
             bottom: 10,
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.timer_outlined,
                   color: ColorStyles.white,
                   size: 17,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Text(
                   recipe.time,
                   style: TextStyles.smallTextReguler
                       .copyWith(color: ColorStyles.white),
                 ),
-                SizedBox(width: 10),
-                ClipOval()
+                const SizedBox(width: 10),
+                const ClipOval()
                 // Container(
                 //   width: 24,
                 //   height: 24,
