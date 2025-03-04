@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/data/data_source/remote/remote_recipe_data_source_impl.dart';
 import 'package:recipe_app/data/repository/mock_bookmart_repository_impl.dart';
 import 'package:recipe_app/data/repository/mock_recipe_repository_impl.dart';
 import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
@@ -6,7 +7,9 @@ import 'package:recipe_app/presentation/saved_recipes/saved_recipes_view_model.d
 import 'package:recipe_app/presentation/saved_recipes/screen/saved_recipes_screen.dart';
 
 final _getSavedRecipeUseCase = GetSavedRecipesUseCase(
-    recipeRepository: MockRecipeRepositoryImpl(),
+    recipeRepository: MockRecipeRepositoryImpl(
+      recipeDataSource: RemoteRecipeDataSourceImpl(),
+    ),
     bookmarkRepository: MockBookmartRepositoryImpl());
 
 class SavedRecipesRoot extends StatelessWidget {
