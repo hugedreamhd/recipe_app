@@ -1,4 +1,4 @@
-import 'package:recipe_app/core/domain/repository/bookmark_repository.dart';
+import 'package:recipe_app/domain/repository/bookmark_repository.dart';
 
 class MockBookmartRepositoryImpl implements BookmarkRepository {
   final _ids = <int>{2, 4};

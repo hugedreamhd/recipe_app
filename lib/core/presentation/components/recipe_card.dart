@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/core/domain/model/recipe.dart';
+import 'package:recipe_app/domain/model/recipe.dart';
 
 import '../../../ui/color_styles.dart';
 import '../../../ui/text_styles.dart';
@@ -70,31 +70,50 @@ class RecipeCard extends StatelessWidget {
                       .copyWith(color: ColorStyles.white),
                 ),
                 const SizedBox(width: 10),
-                const ClipOval()
-                // Container(
-                //   width: 24,
-                //   height: 24,
-                //   decoration: BoxDecoration(
-                //     shape: BoxShape.circle,
-                //     color: ColorStyles.primary20,
-                //   ),
-                //   child: Image.asset(
-                //     'assets/images/bookmark.png',
-                //     fit: BoxFit.cover,
-                //   ),
-                // ),
-                // Container(
-                //   width: 20,
-                //   height: 20,
-                //   decoration: BoxDecoration(
-                //     shape: BoxShape.circle,
-                //     image: DecorationImage(
-                //       image: AssetImage('assets/images/bookmark.png'),
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                // ),
+                const ClipOval(),
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: ColorStyles.primary20,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Image.asset(
+                      'assets/images/bookmark.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ],
+            ),
+          ),
+          Positioned(
+            top: 10,
+            right: 10,
+            child: Container(
+              width: 37,
+              height: 16,
+              decoration: BoxDecoration(
+                color: ColorStyles.secondary20,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.star,
+                    color: ColorStyles.rating,
+                    size: 12,
+                  ),
+                  const SizedBox(width: 2),
+                  Text(
+                    recipe.rating.toString(),
+                    style: TextStyles.smallerTextReguler,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

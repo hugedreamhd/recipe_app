@@ -1,7 +1,7 @@
 //freezed를 하기위한 파일
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../core/domain/model/recipe.dart';
+import '../../domain/model/recipe.dart';
 
 part 'saved_recipes_state.freezed.dart';
 

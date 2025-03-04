@@ -1,4 +1,4 @@
-import 'package:recipe_app/core/domain/repository/bookmark_repository.dart';
+import 'package:recipe_app/domain/repository/bookmark_repository.dart';
 
 import '../model/recipe.dart';
 import '../repository/recipe_repository.dart';

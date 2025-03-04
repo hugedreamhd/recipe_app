@@ -1,5 +1,5 @@
-import 'package:recipe_app/core/domain/model/recipe.dart';
-import 'package:recipe_app/core/domain/repository/recent_search_recipe_repository.dart';
+import 'package:recipe_app/domain/model/recipe.dart';
+import 'package:recipe_app/domain/repository/recent_search_recipe_repository.dart';
 
 class MockRecentSearchRecipeRepositoryImpl
     implements RecentSearchRecipeRepository {
