@@ -1,13 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../domain/model/recipe.dart';
 
-part 'home_state.freezed.dart';
+part 'search_state.freezed.dart'; // 이 부분 필수!
 
 @freezed
-class HomeState with _$HomeState {
-  const factory HomeState({
+class SearchState with _$SearchState {
+  const factory SearchState({
     @Default([]) List<Recipe> recipes,
     @Default(false) bool isLoading,
-  }) = _HomeState;
+  }) = _SearchState;
 }

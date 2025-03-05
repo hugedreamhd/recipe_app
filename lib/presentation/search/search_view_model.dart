@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/domain/repository/recent_search_recipe_repository.dart';
-import 'package:recipe_app/presentation/home/home_state.dart';
 
-class HomeViewModel with ChangeNotifier {
+import 'search_state.dart';
+
+class SearchViewModel with ChangeNotifier {
   final RecentSearchRecipeRepository _recentSearchRecipeRepository;
 
-  HomeViewModel({
+  SearchViewModel({
     required RecentSearchRecipeRepository recentSearchRecipeRepository,
   }) : _recentSearchRecipeRepository = recentSearchRecipeRepository {
     _loadRecentSearchRecipes();
   }
 
-  HomeState _state = const HomeState();
+  SearchState _state = const SearchState();
 
-  HomeState get state => _state;
+  SearchState get state => _state;
 
   void _loadRecentSearchRecipes() async {
     _state = state.copyWith(isLoading: true);

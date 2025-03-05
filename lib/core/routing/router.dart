@@ -8,7 +8,7 @@ import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_app/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_app/presentation/splash_screen/splash_screen.dart';
 
-import '../../presentation/search/search_screen.dart';
+import '../../presentation/search/screen/search_screen.dart';
 import 'route_paths.dart';
 
 final router = GoRouter(
@@ -16,7 +16,9 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: RoutePaths.search,
-      builder: (context, state) => const SearchScreen(),
+      builder: (context, state) => const SearchScreen(
+        state: ,
+      ),
     ),
     GoRoute(
       path: RoutePaths.splashScreen,

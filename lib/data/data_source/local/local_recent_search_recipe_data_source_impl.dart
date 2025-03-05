@@ -1,7 +1,7 @@
 import 'package:recipe_app/data/data_source/recipe_data_source.dart';
 
 class LocalRecentSearchRecipeDataSourceImpl implements RecipeDataSource {
-  var _mockData = {
+  final _mockData = {
     "recipes": [
       {
         "category": "Indian",

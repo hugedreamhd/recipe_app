@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/presentation/components/recipe_card.dart';
 import 'package:recipe_app/core/presentation/components/search_input_field.dart';
+import 'package:recipe_app/presentation/search/search_state.dart';
 
-import '../../ui/color_styles.dart';
-import '../../ui/text_styles.dart';
+import '../../../ui/color_styles.dart';
+import '../../../ui/text_styles.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+  final SearchState state;
+
+  const SearchScreen({
+    super.key,
+    required this.state,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +62,23 @@ class SearchScreen extends StatelessWidget {
               height: 20,
             ),
             Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return Text('$index');
-                },
-              ),
+              child: state.isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemCount: 20,
+                      itemBuilder: (context, index) {
+                        final recipe = state.recipes[index];
+                        return RecipeCard(
+                          recipe: recipe,
+                        );
+                      },
+                    ),
             ),
           ],
         ),
