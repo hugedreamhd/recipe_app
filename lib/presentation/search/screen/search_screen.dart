@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/core/presentation/components/recipe_card.dart';
 import 'package:recipe_app/core/presentation/components/search_input_field.dart';
 import 'package:recipe_app/presentation/search/search_state.dart';
 
+import '../../../core/presentation/components/recipe_grid_item.dart';
 import '../../../ui/color_styles.dart';
 import '../../../ui/text_styles.dart';
 
@@ -66,19 +66,24 @@ class SearchScreen extends StatelessWidget {
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                      ),
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        final recipe = state.recipes[index];
-                        return RecipeCard(
-                          recipe: recipe,
-                        );
-                      },
-                    ),
+                  : state.recipes.isEmpty
+                      ? const Center(
+                          child: Text('No recipes found'),
+                        )
+                      : GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 15,
+                          ),
+                          itemCount: state.recipes.length,
+                          itemBuilder: (context, index) {
+                            final recipe = state.recipes[index];
+                            return RecipeGridItem(
+                              recipe: recipe,
+                            );
+                          },
+                        ),
             ),
           ],
         ),
