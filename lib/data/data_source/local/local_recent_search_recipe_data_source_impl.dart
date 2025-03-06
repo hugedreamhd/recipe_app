@@ -308,6 +308,6 @@ class LocalRecentSearchRecipeDataSourceImpl implements RecipeDataSource {
   @override
   Future<List<Map<String, dynamic>>> getRecipe() async {
     await Future.delayed(const Duration(microseconds: 500));
-    return (_mockData['recipe']!).sublist(2, 4);
+    return (_mockData['recipes']!).sublist(2, 6);
   }
 }

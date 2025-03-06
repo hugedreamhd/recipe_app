@@ -11,6 +11,8 @@
 migrate_working_dir/
 *.freezed.dart
 *.g.dart
+*.tmp
+.DS_Store
 
 # IntelliJ related
 *.iml
@@ -43,3 +45,12 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android 빌드 관련 임시 파일
+android/app/cxx/
+android/app/build/
+android/.gradle/
+android/.idea/
+
+# VS Code 설정 파일
+.vscode/
