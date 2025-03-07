@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/domain/repository/recent_search_recipe_repository.dart';
+import 'package:recipe_app/domain/use_case/search_recipes_use_case.dart';
 
 import 'search_state.dart';
 
 class SearchViewModel with ChangeNotifier {
   final RecentSearchRecipeRepository _recentSearchRecipeRepository;
+  final SearchRecipesUseCase _searchRecipesUseCase;
 
   SearchViewModel({
     required RecentSearchRecipeRepository recentSearchRecipeRepository,
-  }) : _recentSearchRecipeRepository = recentSearchRecipeRepository {
+    required SearchRecipesUseCase searchRecipesUseCase,
+  })  : _recentSearchRecipeRepository = recentSearchRecipeRepository,
+        _searchRecipesUseCase = searchRecipesUseCase {
     _loadRecentSearchRecipes();
   }
 
@@ -27,7 +31,14 @@ class SearchViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void searchRecipes(String query) {
-    print(query);
+  void searchRecipes(String query) async {
+    _state = state.copyWith(isLoading: true);
+    notifyListeners();
+
+    _state = state.copyWith(
+      recipes: await _searchRecipesUseCase.execute(query),
+      isLoading: false,
+    );
+    notifyListeners();
   }
 }
