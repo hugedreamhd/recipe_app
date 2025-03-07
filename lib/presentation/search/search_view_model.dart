@@ -26,4 +26,8 @@ class SearchViewModel with ChangeNotifier {
     );
     notifyListeners();
   }
+
+  void searchRecipes(String query) {
+    print(query);
+  }
 }

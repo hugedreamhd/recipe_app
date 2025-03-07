@@ -8,10 +8,12 @@ import '../../../ui/text_styles.dart';
 
 class SearchScreen extends StatelessWidget {
   final SearchState state;
+  final void Function(String query)? onChanged;
 
   const SearchScreen({
     super.key,
     required this.state,
+    this.onChanged,
   });
 
   @override
@@ -37,7 +39,10 @@ class SearchScreen extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {}, //검색 필드를 탭할때 호출되는 콜백함수
-                    child: const SearchInputField(placeholder: 'Search Recipe'),
+                    child: SearchInputField(
+                      placeholder: 'Search Recipe',
+                      onChanged: onChanged,
+                    ),
                   ),
                 ),
                 const SizedBox(

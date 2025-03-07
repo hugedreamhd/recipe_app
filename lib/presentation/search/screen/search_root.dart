@@ -18,7 +18,12 @@ class SearchRoot extends StatelessWidget {
     return ListenableBuilder(
       listenable: viewModel,
       builder: (context, widget) {
-        return SearchScreen(state: viewModel.state);
+        return SearchScreen(
+          state: viewModel.state,
+          onChanged: (query) {
+            viewModel.searchRecipes(query);
+          },
+        );
       },
     );
   }
