@@ -1,0 +1,26 @@
+@startuml recipeApp
+
+abstract recipeDataSource
+
+abstract RecipeRepository
+
+abstract BookmartRepository
+
+class LocalRecentSearchRecipeDataSourceImpl
+
+class RemoteRecipeDataSourceImpl
+
+class MockBookmarkRepositoryImpl
+
+class MockRecentSearchRecipeRepositoryImpl
+
+
+class MockRecipeRepositoryImpl
+
+usecase GetSavedRecipesUseCase
+
+
+
+
+
+@enduml
