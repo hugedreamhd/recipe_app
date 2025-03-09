@@ -1,6 +1,7 @@
-import 'package:recipe_app/data/data_source/recipe_data_source.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/domain/repository/recipe_repository.dart';
+
+import '../../domain/data_source/recipe_data_source.dart';
 
 class MockRecipeRepositoryImpl implements RecipeRepository {
   final RecipeDataSource _recipeDataSource;
@@ -11,8 +12,8 @@ class MockRecipeRepositoryImpl implements RecipeRepository {
 
   @override
   Future<Recipe?> getRecipe(int id) async {
-    final recipes = await getRecipes();
-    return recipes.where((e) => e.id == id).firstOrNull;
+    final recipe = await getRecipes();
+    return recipe.where((e) => e.id == id).firstOrNull;
   }
 
   @override
