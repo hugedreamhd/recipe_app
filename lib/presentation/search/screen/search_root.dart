@@ -23,6 +23,7 @@ class SearchRoot extends StatelessWidget {
           onTapFilter: () {
             showModalBottomSheet(
               context: context,
+              isScrollControlled: true,
               builder: (context) {
                 return const SearchFilterSheet();
               },
