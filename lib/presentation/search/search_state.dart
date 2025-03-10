@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../domain/filter/filter_state.dart';
 import '../../domain/model/recipe.dart';
 
-part 'search_state.freezed.dart'; // 이 부분 필수!
+part 'search_state.freezed.dart';
 
 @freezed
 class SearchState with _$SearchState {
@@ -10,5 +12,7 @@ class SearchState with _$SearchState {
     @Default(false) bool isLoading,
     @Default('Recent Search') String searchTitle,
     @Default('') String resultsCount,
+    @Default(FilterState(time: 'Newest', rate: 4, category: 'Local Dish'))
+    FilterState filterState,
   }) = _SearchState;
 }
