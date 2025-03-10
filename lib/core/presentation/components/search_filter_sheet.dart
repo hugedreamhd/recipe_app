@@ -7,10 +7,12 @@ import 'filter_buttons.dart';
 
 class SearchFilterSheet extends StatefulWidget {
   final FilterState filterState;
+  final void Function(FilterState state) onChangeFilter;
 
   const SearchFilterSheet({
     super.key,
     required this.filterState,
+    required this.onChangeFilter,
   });
 
   @override
@@ -122,7 +124,9 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                 width: 174,
                 child: SmallButton(
                   'Filter',
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.onChangeFilter(_filterState);
+                  },
                 ),
               ),
               const Spacer(),

@@ -27,11 +27,15 @@ class SearchRoot extends StatelessWidget {
               isScrollControlled: true,
               builder: (context) {
                 return SearchFilterSheet(
-                  filterState: FilterState(
+                  filterState: const FilterState(
                     time: 'Newest',
                     rate: 4,
                     category: 'Local Dish',
                   ),
+                  onChangeFilter: (FilterState state) {
+                    viewModel.onChangeFilter(state);
+                    Navigator.pop(context);
+                  },
                 );
               },
             );
