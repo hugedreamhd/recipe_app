@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/presentation/components/search_filter_sheet.dart';
+import 'package:recipe_app/domain/filter/filter_state.dart';
 import 'package:recipe_app/presentation/search/screen/search_screen.dart';
 import 'package:recipe_app/presentation/search/search_view_model.dart';
 
@@ -25,7 +26,13 @@ class SearchRoot extends StatelessWidget {
               context: context,
               isScrollControlled: true,
               builder: (context) {
-                return const SearchFilterSheet();
+                return SearchFilterSheet(
+                  filterState: FilterState(
+                    time: 'Newest',
+                    rate: 4,
+                    category: 'Local Dish',
+                  ),
+                );
               },
             );
           },
