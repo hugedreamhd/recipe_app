@@ -3,7 +3,7 @@ class FilterState {
   final int rate;
   final String category;
 
-  FilterState({
+  const FilterState({
     required this.time,
     required this.rate,
     required this.category,

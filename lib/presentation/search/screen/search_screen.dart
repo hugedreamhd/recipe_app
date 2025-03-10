@@ -73,7 +73,7 @@ class SearchScreen extends StatelessWidget {
                   state.searchTitle,
                   style: TextStyles.normalTextBold,
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   state.resultsCount,
                   style: TextStyles.smallerTextReguler.copyWith(
