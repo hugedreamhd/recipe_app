@@ -1,11 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/presentation/components/small_button.dart';
+import 'package:recipe_app/domain/filter/filter_state.dart';
 
 import '../../../ui/text_styles.dart';
 import 'filter_buttons.dart';
 
-class SearchFilterSheet extends StatelessWidget {
-  const SearchFilterSheet({super.key});
+class SearchFilterSheet extends StatefulWidget {
+  final FilterState filterState;
+
+  const SearchFilterSheet({
+    super.key,
+    required this.filterState,
+  });
+
+  @override
+  State<SearchFilterSheet> createState() => _SearchFilterSheetState();
+}
+
+class _SearchFilterSheetState extends State<SearchFilterSheet> {
+  late FilterState _filterState;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _filterState = widget.filterState;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +58,12 @@ class SearchFilterSheet extends StatelessWidget {
           ),
           FilterButtons(
             items: const ['All', 'Newest', 'Oldest', 'Popularity'],
-            selectedItem: 'Newest',
-            onSelected: (String item) {},
+            selectedItem: _filterState.time,
+            onSelected: (String item) {
+              setState(() {
+                _filterState = _filterState.copyWith(time: item);
+              });
+            },
           ),
           const SizedBox(
             height: 20,
@@ -53,8 +77,12 @@ class SearchFilterSheet extends StatelessWidget {
           ),
           FilterButtons(
             items: const ['5', '4', '3', '2', '1'],
-            selectedItem: '4',
-            onSelected: (String item) {},
+            selectedItem: _filterState.rate.toString(),
+            onSelected: (String item) {
+              setState(() {
+                _filterState = _filterState.copyWith(rate: int.parse(item));
+              });
+            },
           ),
           const SizedBox(
             height: 20,
@@ -79,8 +107,12 @@ class SearchFilterSheet extends StatelessWidget {
               'Spanish',
               'Lunch'
             ],
-            selectedItem: 'Local Dish',
-            onSelected: (String item) {},
+            selectedItem: _filterState.category,
+            onSelected: (String item) {
+              setState(() {
+                _filterState = _filterState.copyWith(category: item);
+              });
+            },
           ),
           const SizedBox(height: 30),
           Row(
