@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/di/di_setup.dart';
 import 'package:recipe_app/core/presentation/components/filter_button.dart';
 import 'package:recipe_app/core/presentation/components/input_field.dart';
 import 'package:recipe_app/core/presentation/components/two_tab.dart';
@@ -15,6 +16,7 @@ import 'core/presentation/components/small_button.dart';
 import 'core/routing/router.dart';
 
 void main() {
+  diSetup();
   runApp(const MyApp());
 }
 
