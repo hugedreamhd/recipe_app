@@ -9,11 +9,13 @@ import '../../../ui/text_styles.dart';
 class SearchScreen extends StatelessWidget {
   final SearchState state;
   final void Function(String query)? onChanged;
+  final void Function()? onTapFilter;
 
   const SearchScreen({
     super.key,
     required this.state,
     this.onChanged,
+    this.onTapFilter,
   });
 
   @override
@@ -48,14 +50,17 @@ class SearchScreen extends StatelessWidget {
                 const SizedBox(
                   width: 20,
                 ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: ColorStyles.primary100,
-                    borderRadius: BorderRadius.circular(10),
+                GestureDetector(
+                  onTap: onTapFilter,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: ColorStyles.primary100,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Image.asset('assets/images/setting.png'),
                   ),
-                  child: Image.asset('assets/images/setting.png'),
                 ),
               ],
             ),

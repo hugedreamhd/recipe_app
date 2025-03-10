@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/presentation/components/search_filter_sheet.dart';
 import 'package:recipe_app/presentation/search/screen/search_screen.dart';
 import 'package:recipe_app/presentation/search/search_view_model.dart';
 
@@ -18,6 +19,14 @@ class SearchRoot extends StatelessWidget {
           state: viewModel.state,
           onChanged: (query) {
             viewModel.searchRecipes(query);
+          },
+          onTapFilter: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return const SearchFilterSheet();
+              },
+            );
           },
         );
       },
