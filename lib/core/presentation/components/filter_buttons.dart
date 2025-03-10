@@ -18,7 +18,10 @@ class FilterButtons extends StatelessWidget {
     return Wrap(
       children: items.expand((e) {
         return [
-          FilterButton(e, isSelected: e == selectedItem),
+          GestureDetector(
+            onTap: () => onSelected(e),
+            child: FilterButton(e, isSelected: e == selectedItem),
+          ),
           const SizedBox(width: 10),
         ];
       }).toList(),
