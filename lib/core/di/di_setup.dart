@@ -9,6 +9,7 @@ import 'package:recipe_app/domain/repository/bookmark_repository.dart';
 import 'package:recipe_app/domain/repository/recipe_repository.dart';
 import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_app/domain/use_case/search_recipes_use_case.dart';
+import 'package:recipe_app/presentation/home/home_view_model.dart';
 import 'package:recipe_app/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:recipe_app/presentation/search/search_view_model.dart';
 
@@ -58,5 +59,9 @@ void diSetup() {
       recentSearchRecipeRepository: getIt(),
       searchRecipesUseCase: getIt(),
     ),
+  );
+
+  getIt.registerFactory<HomeViewModel>(
+    () => HomeViewModel(),
   );
 }
