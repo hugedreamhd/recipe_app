@@ -21,7 +21,7 @@ class SearchViewModel with ChangeNotifier {
 
   SearchState get state => _state;
 
-  void _loadRecentSearchRecipes() async {
+  Future<void> _loadRecentSearchRecipes() async {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
@@ -36,7 +36,8 @@ class SearchViewModel with ChangeNotifier {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
-    final recipes = await _searchRecipesUseCase.execute(query);
+    final recipes =
+        await _searchRecipesUseCase.execute(query, state.filterState);
 
     _state = state.copyWith(
       recipes: recipes,
