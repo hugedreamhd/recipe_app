@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/presentation/home/home_state.dart';
 import '../../../core/presentation/components/recipe_category_selector.dart';
 import '../../../core/presentation/components/search_input_field.dart';
 import '../../../ui/color_styles.dart';
@@ -7,11 +8,15 @@ import '../../../ui/text_styles.dart';
 class HomeScreen extends StatelessWidget {
   final String name;
   final void Function() onTapSearchField; //검색 필드를 탭할때 호출되는 콜백함수
+  final HomeState state;
+  final void Function(String category) onSelectCategory;
 
   const HomeScreen({
     super.key,
     required this.name,
     required this.onTapSearchField,
+    required this.state,
+    required this.onSelectCategory,
   });
 
   @override
@@ -100,16 +105,9 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 30),
               child: RecipeCategorySelector(
-                categories: const [
-                  'All',
-                  'Indian',
-                  'Italian',
-                  'Asian',
-                  'Chinese',
-                  'Japnese'
-                ],
-                selectedCategory: 'All',
-                onSelectCategory: (String category) {},
+                categories: state.categories,
+                selectedCategory: state.selectedCategory,
+                onSelectCategory: onSelectCategory,
               ),
             ),
           ],
