@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/presentation/components/recipe_catergory_selector.dart';
+import '../../../core/presentation/components/recipe_category_selector.dart';
 import '../../../core/presentation/components/search_input_field.dart';
 import '../../../ui/color_styles.dart';
 import '../../../ui/text_styles.dart';
@@ -91,24 +91,25 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
                 ],
               ),
             ),
+            const SizedBox(
+              height: 15,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 30),
-              child: RecipeCatergorySelector(
+              child: RecipeCategorySelector(
                 categories: const [
                   'All',
                   'Indian',
                   'Italian',
                   'Asian',
                   'Chinese',
+                  'Japnese'
                 ],
                 selectedCategory: 'All',
-                onSelectCaterogy: (String category) {},
+                onSelectCategory: (String category) {},
               ),
             ),
           ],
