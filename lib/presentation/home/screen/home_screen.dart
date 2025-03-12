@@ -124,9 +124,12 @@ class HomeScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: state.dishes
-                      .map((e) => DishCard(
-                            recipe: e,
-                            isFavorite: true,
+                      .map((e) => Padding(
+                            padding: const EdgeInsets.only(right: 15.0),
+                            child: DishCard(
+                              recipe: e,
+                              isFavorite: true,
+                            ),
                           ))
                       .toList(),
                 ),
