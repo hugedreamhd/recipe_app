@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/presentation/components/dish_card.dart';
 import 'package:recipe_app/presentation/home/home_state.dart';
 import '../../../core/presentation/components/recipe_category_selector.dart';
 import '../../../core/presentation/components/search_input_field.dart';
@@ -122,7 +123,12 @@ class HomeScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: state.dishes.map((e) => Text(e.name)).toList(),
+                  children: state.dishes
+                      .map((e) => DishCard(
+                            recipe: e,
+                            isFavorite: true,
+                          ))
+                      .toList(),
                 ),
               ),
             ),
