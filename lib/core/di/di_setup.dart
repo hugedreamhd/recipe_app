@@ -15,6 +15,7 @@ import 'package:recipe_app/presentation/search/search_view_model.dart';
 
 import '../../data/repository/mock_recent_search_recipe_repository_impl.dart';
 import '../../domain/repository/recent_search_recipe_repository.dart';
+import '../../domain/use_case/get_categories_use_case.dart';
 
 final getIt = GetIt.instance;
 // dataSource
@@ -48,6 +49,12 @@ void diSetup() {
       localStorage: getIt(),
     ),
   );
+
+  getIt.registerSingleton(
+    GetCategoriesUseCase(
+      recipeRepository: getIt(),
+    ),
+  );
 // viewModel
   getIt.registerFactory<SavedRecipesViewModel>(
     () => SavedRecipesViewModel(
@@ -62,6 +69,8 @@ void diSetup() {
   );
 
   getIt.registerFactory<HomeViewModel>(
-    () => HomeViewModel(),
+    () => HomeViewModel(
+      getCategoriesUseCase: getIt(),
+    ),
   );
 }
