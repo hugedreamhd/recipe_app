@@ -114,6 +114,18 @@ class HomeScreen extends StatelessWidget {
                 onSelectCategory: onSelectCategory,
               ),
             ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: state.dishes.map((e) => Text(e.name)).toList(),
+                ),
+              ),
+            ),
           ],
         ),
       ),
