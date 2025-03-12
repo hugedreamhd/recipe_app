@@ -31,6 +31,9 @@ class HomeViewModel with ChangeNotifier {
       selectedCategory: 'All',
     );
     notifyListeners();
+
+    await _fetchDishesByCategory('All');
+    notifyListeners();
   }
 
   void onSelectCategory(String category) async {
