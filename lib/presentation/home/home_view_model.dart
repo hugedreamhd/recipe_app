@@ -3,13 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/domain/error/network_error.dart';
 import 'package:recipe_app/core/domain/error/result.dart';
+import 'package:recipe_app/domain/error/new_recipe_error.dart';
+import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/domain/use_case/get_categories_use_case.dart';
 import 'package:recipe_app/domain/use_case/get_dishes_by_category_use_case.dart';
+import 'package:recipe_app/domain/use_case/get_new_recipes_use_case.dart';
 import 'package:recipe_app/presentation/home/home_state.dart';
 
 class HomeViewModel with ChangeNotifier {
   final GetCategoriesUseCase _getCategoriesUseCase;
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
+  final GetNewRecipesUseCase _getNewRecipesUseCase;
 
   final _eventController =
       StreamController<NetworkError>(); //단발성 상태 에러처리라 UI로 표시하고 말것임
@@ -19,9 +23,12 @@ class HomeViewModel with ChangeNotifier {
   HomeViewModel({
     required GetCategoriesUseCase getCategoriesUseCase,
     required GetDishesByCategoryUseCase getDishesByCategoryUseCase,
+    required GetNewRecipesUseCase getNewRecipesUseCase,
   })  : _getCategoriesUseCase = getCategoriesUseCase,
-        _getDishesByCategoryUseCase = getDishesByCategoryUseCase {
+        _getDishesByCategoryUseCase = getDishesByCategoryUseCase,
+        _getNewRecipesUseCase = getNewRecipesUseCase {
     _fetchCategories();
+    _fetchNewRecipes();
   }
 
   HomeState _state = const HomeState();
@@ -50,15 +57,31 @@ class HomeViewModel with ChangeNotifier {
       case ResultError<List<String>, NetworkError>():
         switch (result.error) {
           case NetworkError.requrestTimeout:
-          // TODO: Handle this case.
           case NetworkError.noInternet:
-          // TODO: Handle this case.
           case NetworkError.serverError:
-          // TODO: Handle this case.q
           case NetworkError.unknown:
-          // TODO: Handle this case.
         }
         _eventController.add(result.error);
+    }
+  }
+
+  Future<void> _fetchNewRecipes() async {
+    final result = await _getNewRecipesUseCase.execute();
+
+    switch (result) {
+      case ResultSuccess<List<Recipe>, NewRecipeError>():
+        _state = state.copyWith(newRecipes: result.data);
+        notifyListeners();
+
+      case ResultError<List<Recipe>, NewRecipeError>():
+        switch (result.error) {
+          case NewRecipeError.noRecipe:
+            throw UnimplementedError();
+          case NewRecipeError.invalidCategory:
+            throw UnimplementedError();
+          case NewRecipeError.unknown:
+            throw UnimplementedError();
+        }
     }
   }
 
