@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/domain/error/network_error.dart';
+import 'package:recipe_app/core/domain/error/result.dart';
 import 'package:recipe_app/domain/use_case/get_categories_use_case.dart';
 import 'package:recipe_app/domain/use_case/get_dishes_by_category_use_case.dart';
 import 'package:recipe_app/presentation/home/home_state.dart';
@@ -7,7 +11,10 @@ class HomeViewModel with ChangeNotifier {
   final GetCategoriesUseCase _getCategoriesUseCase;
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
 
-  HomeState _state = const HomeState();
+  final _eventController =
+      StreamController<NetworkError>(); //단발성 상태 에러처리라 UI로 표시하고 말것임
+
+  Stream<NetworkError> get eventStream => _eventController.stream;
 
   HomeViewModel({
     required GetCategoriesUseCase getCategoriesUseCase,
@@ -16,6 +23,8 @@ class HomeViewModel with ChangeNotifier {
         _getDishesByCategoryUseCase = getDishesByCategoryUseCase {
     _fetchCategories();
   }
+
+  HomeState _state = const HomeState();
 
   HomeState get state => _state;
 
@@ -26,14 +35,31 @@ class HomeViewModel with ChangeNotifier {
   }
 
   void _fetchCategories() async {
-    _state = state.copyWith(
-      categories: await _getCategoriesUseCase.execute(),
-      selectedCategory: 'All',
-    );
-    notifyListeners();
+    final result = await _getCategoriesUseCase.execute();
 
-    await _fetchDishesByCategory('All');
-    notifyListeners();
+    switch (result) {
+      case ResultSuccess<List<String>, NetworkError>():
+        _state = state.copyWith(
+          categories: result.data,
+          selectedCategory: 'All',
+        );
+        notifyListeners();
+
+        await _fetchDishesByCategory('All');
+        notifyListeners();
+      case ResultError<List<String>, NetworkError>():
+        switch (result.error) {
+          case NetworkError.requrestTimeout:
+          // TODO: Handle this case.
+          case NetworkError.noInternet:
+          // TODO: Handle this case.
+          case NetworkError.serverError:
+          // TODO: Handle this case.q
+          case NetworkError.unknown:
+          // TODO: Handle this case.
+        }
+        _eventController.add(result.error);
+    }
   }
 
   void onSelectCategory(String category) async {
