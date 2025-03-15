@@ -6,19 +6,16 @@ import '../../../core/presentation/components/recipe_category_selector.dart';
 import '../../../core/presentation/components/search_input_field.dart';
 import '../../../ui/color_styles.dart';
 import '../../../ui/text_styles.dart';
+import '../home_action.dart';
 
 class HomeScreen extends StatelessWidget {
-  final String name;
-  final void Function() onTapSearchField; //검색 필드를 탭할때 호출되는 콜백함수
   final HomeState state;
-  final void Function(String category) onSelectCategory;
+  final void Function(HomeAction action) onAction; //검색 필드를 탭할때 호출되는 콜백함수
 
   const HomeScreen({
     super.key,
-    required this.name,
-    required this.onTapSearchField,
     required this.state,
-    required this.onSelectCategory,
+    required this.onAction,
   });
 
   @override
@@ -42,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Hello $name',
+                              'Hello ${state.name}',
                               style: TextStyles.largeTextBold,
                             ),
                             const SizedBox(
@@ -76,7 +73,8 @@ class HomeScreen extends StatelessWidget {
                         Expanded(
                           child: GestureDetector(
                             behavior: HitTestBehavior.opaque, //이벤트가 발생하는 영역을 확장
-                            onTap: onTapSearchField, //검색 필드를 탭할때 호출되는 콜백함수
+                            onTap: () => onAction(const HomeAction
+                                .onTapSearchField()), //검색 필드를 탭할때 호출되는 콜백함수
                             child: const IgnorePointer(
                               //자식 위젯에 대한 이벤트를 무시
                               child: SearchInputField(
@@ -115,7 +113,8 @@ class HomeScreen extends StatelessWidget {
                 child: RecipeCategorySelector(
                   categories: state.categories,
                   selectedCategory: state.selectedCategory,
-                  onSelectCategory: onSelectCategory,
+                  onSelectCategory: (category) =>
+                      onAction(HomeAction.onSelectCategory(category)),
                 ),
               ),
               const SizedBox(
