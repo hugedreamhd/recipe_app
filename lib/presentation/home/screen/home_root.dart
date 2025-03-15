@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:recipe_app/presentation/home/home_action.dart';
 import 'package:recipe_app/presentation/home/home_view_model.dart';
 import 'package:recipe_app/presentation/home/screen/home_screen.dart';
 
@@ -24,11 +25,13 @@ class HomeRoot extends StatelessWidget {
     return ListenableBuilder(
       builder: (context, snapshot) {
         return HomeScreen(
-          state: viewModel.state,
-          name: 'Jega',
-          onTapSearchField: () => context.push(RoutePaths.search),
-          onSelectCategory: (String category) {
-            viewModel.onSelectCategory(category);
+          state: (viewModel.state),
+          onAction: (HomeAction action) {
+            if (action is OnTapSearchField) {
+              context.push(RoutePaths.search);
+              return;
+            }
+            viewModel.onAction(action);
           },
         );
       },
