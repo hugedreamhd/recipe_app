@@ -4,6 +4,7 @@ import 'package:recipe_app/presentation/home/home_state.dart';
 import '../../../core/presentation/components/new_recipe_card.dart';
 import '../../../core/presentation/components/recipe_category_selector.dart';
 import '../../../core/presentation/components/search_input_field.dart';
+import '../../../domain/model/recipe.dart';
 import '../../../ui/color_styles.dart';
 import '../../../ui/text_styles.dart';
 import '../home_action.dart';
@@ -131,6 +132,9 @@ class HomeScreen extends StatelessWidget {
                               child: DishCard(
                                 recipe: e,
                                 isFavorite: true,
+                                onTapFavorite: (Recipe recipe) {
+                                  onAction(HomeAction.onTapFavorite(recipe));
+                                },
                               ),
                             ))
                         .toList(),
