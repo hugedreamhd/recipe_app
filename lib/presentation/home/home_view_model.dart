@@ -94,12 +94,16 @@ class HomeViewModel with ChangeNotifier {
     await _fetchDishesByCategory(category);
   }
 
+  void _onTapFavorite(Recipe recipe) async {}
+
   void onAction(HomeAction action) async {
     switch (action) {
       case OnTapSearchField():
         return;
       case OnSelectCategory():
         _onSelectCategory(action.category);
+      case OnTapFavorite():
+        _onTapFavorite(action.recipe);
     }
   }
 }
