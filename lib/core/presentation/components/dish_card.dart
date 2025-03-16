@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
+import 'package:recipe_app/presentation/home/home_action.dart';
 
 import '../../../ui/color_styles.dart';
 import '../../../ui/text_styles.dart';
@@ -7,11 +8,13 @@ import '../../../ui/text_styles.dart';
 class DishCard extends StatelessWidget {
   final Recipe recipe;
   final bool isFavorite;
+  final void Function(Recipe recipe) onTapFavorite; //페이보릿 부분만
 
   const DishCard({
     super.key,
     required this.recipe,
     required this.isFavorite,
+    required this.onTapFavorite,
   });
 
   @override
@@ -70,17 +73,21 @@ class DishCard extends StatelessWidget {
           Positioned(
             right: 10,
             bottom: 10,
-            child: Container(
-              height: 24,
-              width: 24,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: ColorStyles.white),
-              child: SizedBox(
-                height: 16,
-                width: 16,
-                child: Image.asset(
-                  'assets/images/bookmark.png',
-                  color: isFavorite ? ColorStyles.primary80 : ColorStyles.gray3,
+            child: GestureDetector(
+              onTap: () => OnTapFavorite(recipe),
+              child: Container(
+                height: 24,
+                width: 24,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: ColorStyles.white),
+                child: SizedBox(
+                  height: 16,
+                  width: 16,
+                  child: Image.asset(
+                    'assets/images/bookmark.png',
+                    color:
+                        isFavorite ? ColorStyles.primary80 : ColorStyles.gray3,
+                  ),
                 ),
               ),
             ),
