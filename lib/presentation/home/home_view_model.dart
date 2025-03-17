@@ -29,11 +29,11 @@ class HomeViewModel with ChangeNotifier {
     required GetCategoriesUseCase getCategoriesUseCase,
     required GetDishesByCategoryUseCase getDishesByCategoryUseCase,
     required GetNewRecipesUseCase getNewRecipesUseCase,
-    required ToggleBookmarkRecipeUseCase toggleBookmartRecipeUseCase,
+    required ToggleBookmarkRecipeUseCase toggleBookmarkRecipeUseCase,
   })  : _getCategoriesUseCase = getCategoriesUseCase,
         _getDishesByCategoryUseCase = getDishesByCategoryUseCase,
         _getNewRecipesUseCase = getNewRecipesUseCase,
-        _toggleBookmarkRecipeUseCase = toggleBookmartRecipeUseCase {
+        _toggleBookmarkRecipeUseCase = toggleBookmarkRecipeUseCase {
     _fetchCategories();
     _fetchNewRecipes();
   }
