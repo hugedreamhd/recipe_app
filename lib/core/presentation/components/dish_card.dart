@@ -7,13 +7,11 @@ import '../../../ui/text_styles.dart';
 
 class DishCard extends StatelessWidget {
   final Recipe recipe;
-  final bool isFavorite;
   final void Function(Recipe recipe) onTapFavorite; //페이보릿 부분만
 
   const DishCard({
     super.key,
     required this.recipe,
-    required this.isFavorite,
     required this.onTapFavorite,
   });
 
@@ -74,7 +72,7 @@ class DishCard extends StatelessWidget {
             right: 10,
             bottom: 10,
             child: GestureDetector(
-              onTap: () => OnTapFavorite(recipe),
+              onTap: () => onTapFavorite(recipe),
               child: Container(
                 height: 24,
                 width: 24,
@@ -85,8 +83,9 @@ class DishCard extends StatelessWidget {
                   width: 16,
                   child: Image.asset(
                     'assets/images/bookmark.png',
-                    color:
-                        isFavorite ? ColorStyles.primary80 : ColorStyles.gray3,
+                    color: recipe.isFavorite
+                        ? ColorStyles.primary80
+                        : ColorStyles.gray3,
                   ),
                 ),
               ),
