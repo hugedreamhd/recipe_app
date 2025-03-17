@@ -96,7 +96,7 @@ void diSetup() {
       getCategoriesUseCase: getIt(),
       getDishesByCategoryUseCase: getIt(),
       getNewRecipesUseCase: getIt(),
-      toggleBookmartRecipeUseCase: getIt(),
+      toggleBookmarkRecipeUseCase: getIt(),
     ),
   );
 }
