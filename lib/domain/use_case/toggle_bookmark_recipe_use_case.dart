@@ -5,11 +5,11 @@ import 'package:recipe_app/domain/repository/recipe_repository.dart';
 
 import '../model/recipe.dart';
 
-class ToggleBookmartRecipeUseCase {
+class ToggleBookmarkRecipeUseCase {
   final RecipeRepository _recipeRepository;
   final BookmarkRepository _bookmarkRepository;
 
-  ToggleBookmartRecipeUseCase({
+  ToggleBookmarkRecipeUseCase({
     required RecipeRepository recipeRepository,
     required BookmarkRepository bookmarkRepository,
   })  : _recipeRepository = recipeRepository,
@@ -23,8 +23,16 @@ class ToggleBookmartRecipeUseCase {
       }
 
       await _bookmarkRepository.toggle(recipeId);
+      final recipes = await _recipeRepository.getRecipes();
 
-      return const Result.success([]);
+      final ids = await _bookmarkRepository.getBookmarkIds();
+
+      return Result.success(recipes.map((e) {
+        if (ids.contains(e.id)) {
+          return e.copyWith(isFavorite: true);
+        }
+        return e;
+      }).toList());
     } catch (e) {
       return const Result.error(BookmarkError.unknown);
     }
