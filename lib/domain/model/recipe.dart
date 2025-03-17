@@ -17,7 +17,7 @@ class Recipe with _$Recipe {
     required String time,
     required double rating,
     required List<RecipeIngredient> ingredients,
-    @Default(false) required bool isFavorite,
+    @Default(false) bool isFavorite,
   }) = _Recipe;
 
   factory Recipe.fromJson(Map<String, Object?> json) => _$RecipeFromJson(json);
