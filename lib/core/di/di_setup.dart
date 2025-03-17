@@ -56,6 +56,7 @@ void diSetup() {
   getIt.registerSingleton(
     GetDishesByCategoryUseCase(
       recipeRepository: getIt(),
+      bookmarkRepository: getIt(),
     ),
   );
 
