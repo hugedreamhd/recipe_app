@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:recipe_app/domain/repository/bookmark_repository.dart';
+import 'package:rxdart/rxdart.dart';
 
 class MockBookmartRepositoryImpl implements BookmarkRepository {
   final _ids = <int>{2, 4};
-  final _controller = StreamController<Set<int>>.broadcast();
+  final _controller = BehaviorSubject<Set<int>>(); //관찰자가 있어야지만 데이터를 돌려줌
 
   MockBookmartRepositoryImpl() {
     _controller.add(_ids);

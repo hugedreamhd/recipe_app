@@ -6,10 +6,12 @@ import '../../../ui/text_styles.dart';
 
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
+  final void Function(Recipe recipe) onTapFavorite;
 
   const RecipeCard({
     super.key,
     required this.recipe,
+    required this.onTapFavorite,
   });
 
   @override
@@ -70,19 +72,21 @@ class RecipeCard extends StatelessWidget {
                       .copyWith(color: ColorStyles.white),
                 ),
                 const SizedBox(width: 10),
-                const ClipOval(),
-                Container(
-                  width: 24,
-                  height: 24,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: ColorStyles.primary20,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Image.asset(
-                      'assets/images/bookmark.png',
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () => onTapFavorite(recipe),
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorStyles.primary20,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Image.asset(
+                        'assets/images/bookmark.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

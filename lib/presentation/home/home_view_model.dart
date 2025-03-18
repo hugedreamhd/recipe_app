@@ -19,6 +19,7 @@ class HomeViewModel with ChangeNotifier {
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
   final GetNewRecipesUseCase _getNewRecipesUseCase;
   final ToggleBookmarkRecipeUseCase _toggleBookmarkRecipeUseCase;
+  StreamSubscription? _streamSubscription;
 
   final _eventController =
       StreamController<NetworkError>(); //단발성 상태 에러처리라 UI로 표시하고 말것임
@@ -43,9 +44,11 @@ class HomeViewModel with ChangeNotifier {
   HomeState get state => _state;
 
   Future<void> _fetchDishesByCategory(String category) async {
-    final dishes = await _getDishesByCategoryUseCase.execute(category);
-    _state = state.copyWith(dishes: dishes);
-    notifyListeners();
+    _streamSubscription =
+        _getDishesByCategoryUseCase.execute(category).listen((dishes) {
+      _state = state.copyWith(dishes: dishes);
+      notifyListeners();
+    });
   }
 
   void _fetchCategories() async {
@@ -129,5 +132,11 @@ class HomeViewModel with ChangeNotifier {
       case OnTapFavorite():
         _onTapFavorite(action.recipe);
     }
+  }
+
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    super.dispose();
   }
 }

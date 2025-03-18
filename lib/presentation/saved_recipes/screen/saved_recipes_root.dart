@@ -3,6 +3,8 @@ import 'package:recipe_app/core/di/di_setup.dart';
 import 'package:recipe_app/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:recipe_app/presentation/saved_recipes/screen/saved_recipes_screen.dart';
 
+import '../saved_recipes_action.dart';
+
 class SavedRecipesRoot extends StatelessWidget {
   const SavedRecipesRoot({super.key});
 
@@ -21,6 +23,7 @@ class SavedRecipesRoot extends StatelessWidget {
 
         return SavedRecipesScreen(
           recipes: viewModel.state.recipes,
+          onAction: viewModel.onAction,
         );
       },
     );
