@@ -12,18 +12,13 @@ class SavedRecipesViewModel with ChangeNotifier {
   SavedRecipesViewModel({
     required GetSavedRecipesUseCase getSavedRecipeUseCase,
   }) : _getSavedRecipesUseCase = getSavedRecipeUseCase {
-    _loadRecipeData();
-  }
-
-  void _loadRecipeData() async {
-    _state = state.copyWith(isLoading: true);
-    notifyListeners(); //로딩 시작 알림
-
-    _state = state.copyWith(
-      recipes: await _getSavedRecipesUseCase.execute(),
-      isLoading: false, //로딩 종료
-    );
-
-    notifyListeners(); //데이터 및 상태 업데이트
+    // _loadRecipeData();
+    _getSavedRecipesUseCase.execute().listen((recipes) {
+      _state = state.copyWith(
+        recipes: recipes,
+        //상태 업데이트
+      );
+      notifyListeners();
+    });
   }
 }
