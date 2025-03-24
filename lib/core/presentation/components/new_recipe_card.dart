@@ -82,7 +82,7 @@ class NewRecipeCard extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  recipe.chef,
+                  recipe.name,
                   style: TextStyles.smallerTextReguler.copyWith(
                     color: ColorStyles.gray3,
                   ),
