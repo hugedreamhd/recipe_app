@@ -53,7 +53,7 @@ class _SmallButtonState extends State<SmallButton> {
           children: [
             Text(
               widget.text,
-              style: widget.textStyle.copyWith(
+              style: TextStyles.smallerTextBold.copyWith(
                 //생성자에서 받은 textStyle에 추가로 색상을 설정, 생성자에는 const 사용 가능한 위젯만 올수 있다. copyWith를 사용할 수 없음
                 color: ColorStyles.white,
               ),
