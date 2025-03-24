@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:recipe_app/core/di/di_setup.dart';
 import 'package:recipe_app/presentation/saved_recipes/saved_recipes_view_model.dart';
 import 'package:recipe_app/presentation/saved_recipes/screen/saved_recipes_screen.dart';
@@ -23,7 +24,13 @@ class SavedRecipesRoot extends StatelessWidget {
 
         return SavedRecipesScreen(
           recipes: viewModel.state.recipes,
-          onAction: viewModel.onAction,
+          onAction: (action) {
+            if (action is OnTapRecipe) {
+              context.push('/Home/Ingredient/${action.recipe.id}');
+              return;
+            }
+            viewModel.onAction(action);
+          },
         );
       },
     );
