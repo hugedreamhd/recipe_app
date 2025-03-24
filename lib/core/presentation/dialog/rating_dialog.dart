@@ -6,16 +6,14 @@ import '../../../ui/text_styles.dart';
 
 class RatingDialog extends StatefulWidget {
   final String title;
-  final int score; //별 갯수
   final void Function(int score) onScoreChanged; //별 갯수가 바뀔때마다 상태를 알려주는 콜백함수
-  final String onScoreSubmitted; //버튼 눌렀을때 호출되는 함수
+  final String actionName;
 
   const RatingDialog({
     super.key,
     required this.title,
-    required this.score,
     required this.onScoreChanged,
-    required this.onScoreSubmitted,
+    required this.actionName,
   });
 
   @override
@@ -38,18 +36,19 @@ class _RatingDialogState extends State<RatingDialog> {
         onChange: (int value) {
           setState(() {
             _value = value;
-            print('updated value: $_value');
           });
         },
       ),
       actions: [
         SmallButton(
-          widget.onScoreSubmitted,
+          widget.actionName,
           textStyle: TextStyles.smallerTextReguler,
           color: ColorStyles.rating,
-          onPressed: () {
-            widget.onScoreChanged(_value);
-          },
+          onPressed: _value == 0
+              ? null
+              : () {
+                  widget.onScoreChanged(_value);
+                },
         ),
       ],
     );
