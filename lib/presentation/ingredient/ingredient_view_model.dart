@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:recipe_app/domain/repository/ingredient_repository.dart';
 import 'package:recipe_app/domain/repository/procedure_repository.dart';
@@ -29,7 +31,6 @@ class IngredientViewModel with ChangeNotifier {
       case LoadRecipe():
         _loadRecipe(action.recipeId);
       case OnTapFavorite():
-        // TODO: Handle this case.
         throw UnimplementedError();
       case OnTapIngredient():
         _state = state.copyWith(selectedTabIndex: 0);
@@ -37,7 +38,14 @@ class IngredientViewModel with ChangeNotifier {
       case OnTapProcedure():
         _state = state.copyWith(selectedTabIndex: 1);
         notifyListeners();
+      case OnTapShareMenu():
+        log(action.link);
+      case OnTapShareRateRecipe():
+        log('${action.rate}');
       case OnTapFollow():
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case OnTapUnsave():
         // TODO: Handle this case.
         throw UnimplementedError();
     }
