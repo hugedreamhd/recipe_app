@@ -60,11 +60,10 @@ class MyHomePage extends StatelessWidget {
                   builder: (_) {
                     return RatingDialog(
                       title: 'Rate Recipe',
-                      score: 3,
                       onScoreChanged: (score) {
                         print('onScoreChanged');
                       },
-                      onScoreSubmitted: 'Send',
+                      actionName: 'Send',
                     );
                   });
             },
