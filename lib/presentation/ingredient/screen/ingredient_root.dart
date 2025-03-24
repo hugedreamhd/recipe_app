@@ -6,6 +6,7 @@ import 'package:recipe_app/presentation/ingredient/screen/ingredient_screen.dart
 
 import '../../../core/di/di_setup.dart';
 import '../../../core/presentation/dialog/share_dialog.dart';
+import '../../../ui/text_styles.dart';
 
 class IngredientRoot extends StatelessWidget {
   final int recipeId;
@@ -39,6 +40,14 @@ class IngredientRoot extends StatelessWidget {
                               viewModel.onAction(
                                   IngredientAction.onTapShareMenu(link));
                               Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Link Copied',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
                             },
                           );
                         },

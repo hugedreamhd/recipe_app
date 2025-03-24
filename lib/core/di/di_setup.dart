@@ -1,10 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:recipe_app/data/clipboard/default_clipboard_service.dart';
 import 'package:recipe_app/data/data_source/local/default_local_storage.dart';
 import 'package:recipe_app/data/data_source/remote/remote_recipe_data_source_impl.dart';
 import 'package:recipe_app/data/repository/mock_bookmart_repository_impl.dart';
 import 'package:recipe_app/data/repository/mock_ingredient_repository_impl.dart';
 import 'package:recipe_app/data/repository/mock_procedure_repository_impl.dart';
 import 'package:recipe_app/data/repository/mock_recipe_repository_impl.dart';
+import 'package:recipe_app/domain/clipboard/clipboard_service.dart';
 import 'package:recipe_app/domain/data_source/local_storage.dart';
 import 'package:recipe_app/domain/data_source/recipe_data_source.dart';
 import 'package:recipe_app/domain/repository/bookmark_repository.dart';
@@ -52,6 +54,11 @@ void diSetup() {
   getIt.registerSingleton<ProcedureRepository>(
     MockProcedureRepositoryImpl(),
   );
+
+  getIt.registerSingleton<ClipboardService>(
+    DefaultClipboardService(),
+  );
+
   //useCase
   getIt.registerSingleton(
     GetSavedRecipesUseCase(
@@ -120,6 +127,7 @@ void diSetup() {
       ingredientRepository: getIt(),
       procedureRepository: getIt(),
       getDishesByCategoryUseCase: getIt(),
+      clipboardService: getIt(),
     ),
   );
 }

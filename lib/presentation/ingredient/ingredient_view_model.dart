@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:recipe_app/domain/clipboard/clipboard_service.dart';
 import 'package:recipe_app/domain/repository/ingredient_repository.dart';
 import 'package:recipe_app/domain/repository/procedure_repository.dart';
 import 'package:recipe_app/domain/use_case/get_dishes_by_category_use_case.dart';
@@ -12,6 +13,7 @@ class IngredientViewModel with ChangeNotifier {
   final IngredientRepository _ingredientRepository;
   final ProcedureRepository _procedureRepository;
   final GetDishesByCategoryUseCase _getDishesByCategoryUseCase;
+  final ClipboardService _clipboardService;
 
   IngredientState _state = const IngredientState();
 
@@ -21,10 +23,12 @@ class IngredientViewModel with ChangeNotifier {
     required IngredientRepository ingredientRepository,
     required ProcedureRepository procedureRepository,
     required GetDishesByCategoryUseCase getDishesByCategoryUseCase,
+    required ClipboardService clipboardService,
   })  : _ingredientRepository = ingredientRepository,
         _procedureRepository = procedureRepository,
         _getDishesByCategoryUseCase =
-            getDishesByCategoryUseCase; //북마크 정보까지 가져올 수 있어서
+            getDishesByCategoryUseCase, //북마크 정보까지 가져올 수 있어서
+        _clipboardService = clipboardService;
 
   void onAction(IngredientAction action) async {
     switch (action) {
@@ -39,7 +43,7 @@ class IngredientViewModel with ChangeNotifier {
         _state = state.copyWith(selectedTabIndex: 1);
         notifyListeners();
       case OnTapShareMenu():
-        log(action.link);
+        _clipboardService.copyText(action.link);
       case OnTapShareRateRecipe():
         log('${action.rate}');
       case OnTapFollow():
