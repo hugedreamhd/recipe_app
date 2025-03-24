@@ -8,4 +8,5 @@ abstract class RoutePaths {
   static const String notifications = '/notifications';
   static const String profile = '/profile';
   static const String search = '/search';
+  static const String ingredient = '/Home/Ingredient/:recipeId';
 }

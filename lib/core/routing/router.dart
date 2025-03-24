@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/presentation/home/screen/home_root.dart';
+import 'package:recipe_app/presentation/ingredient/screen/ingredient_root.dart';
 import 'package:recipe_app/presentation/main/main_screen.dart';
 import 'package:recipe_app/presentation/notifications/nofitications_screen.dart';
 import 'package:recipe_app/presentation/profile/profile_screen.dart';
@@ -14,6 +15,15 @@ import 'route_paths.dart';
 final router = GoRouter(
   initialLocation: RoutePaths.splashScreen,
   routes: [
+    GoRoute(
+      path: RoutePaths.ingredient,
+      builder: (context, state) {
+        final recipeId = int.parse(state.pathParameters['recipeId']!);
+        return IngredientRoot(
+          recipeId: recipeId,
+        );
+      },
+    ),
     GoRoute(
       path: RoutePaths.search,
       builder: (context, state) => const SearchRoot(),
