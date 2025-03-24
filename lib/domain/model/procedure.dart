@@ -8,7 +8,7 @@ class Procedure with _$Procedure {
   const factory Procedure({
     required int recipeId,
     required int step,
-    required int content,
+    required String content,
   }) = _Procedure;
 
   factory Procedure.fromJson(Map<String, Object?> json) =>
