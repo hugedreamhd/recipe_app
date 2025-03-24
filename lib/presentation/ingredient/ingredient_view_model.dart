@@ -26,19 +26,18 @@ class IngredientViewModel with ChangeNotifier {
 
   void onAction(IngredientAction action) async {
     switch (action) {
+      case LoadRecipe():
+        _loadRecipe(action.recipeId);
       case OnTapFavorite():
         // TODO: Handle this case.
         throw UnimplementedError();
       case OnTapIngredient():
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        _state = state.copyWith(selectedTabIndex: 0);
+        notifyListeners();
       case OnTapProcedure():
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        _state = state.copyWith(selectedTabIndex: 1);
+        notifyListeners();
       case OnTapFollow():
-        // TODO: Handle this case.
-        throw UnimplementedError();
-      case LoadRecipe():
         // TODO: Handle this case.
         throw UnimplementedError();
     }
@@ -62,13 +61,18 @@ class IngredientViewModel with ChangeNotifier {
   }
 
   void _loadRecipe(int id) async {
-    _getDishesByCategoryUseCase.execute('All').listen((recipes) {
+    _getDishesByCategoryUseCase.execute('All').listen((recipes) async {
       final recipe = recipes.firstWhere((e) => e.id == id);
-      _state = state.copyWith(recipe: recipe);
-      notifyListeners();
+      _state = state.copyWith(
+        recipe: recipe,
+      );
+
+      // Chef 정보 로드
 
       _getIngredients();
       _getProcedures();
+
+      notifyListeners();
     });
   }
 }
