@@ -84,6 +84,4 @@ abstract class TextStyles {
     fontWeight: FontWeight.normal,
     fontFamily: 'Poppins',
   );
-
-  static var primaryColor100;
 }
